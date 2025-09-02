@@ -1,6 +1,6 @@
 import db from "#db/client";
 import { createUser } from "#db/queries/users";
-// import { createLevel } from "./queries/levels";
+import { createLevel } from "#db/queries/levels";
 import { createUserQuest } from "#db/queries/users_quests";
 import { createQuest } from "#db/queries/quests";
 import { createBadge } from "#db/queries/badges";
@@ -179,4 +179,15 @@ async function seedDatabase() {
     await createUserQuest(1, 12);
   }
   await seedUsersQuests();
+  
+  // createLevel(name, min_xp, max_xp)
+  async function seedLevels() {
+    await createLevel("Novice", 0, 0);
+    await createLevel("Wanderer", 1, 2);
+    await createLevel("Nomad", 3, 5);
+    await createLevel("Explorer", 6, 8);
+    await createLevel("Adventurer", 9, 11);
+    await createLevel("Legend of the Map", 12, 999999)
+  }
+  await seedLevels()
 }
