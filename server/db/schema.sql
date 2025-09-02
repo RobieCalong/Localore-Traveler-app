@@ -28,8 +28,6 @@ CREATE TABLE quests (
     id SERIAL PRIMARY KEY,
     title text NOT NULL, 
     messages VARCHAR[] NOT NULL,
-    complete Boolean DEFAULT false,
-    quest_image_url text DEFAULT NULL,
     points int NOT NULL, 
     location text NOT NULL, 
     badge_id int NOT NULL REFERENCES badges(id) ON DELETE CASCADE
@@ -39,5 +37,7 @@ CREATE TABLE users_quests (
     id SERIAL PRIMARY KEY, 
     user_id int NOT NULL REFERENCES users(id) ON DELETE CASCADE, 
     quest_id int NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
+    complete Boolean DEFAULT false,
+    quest_image_url text DEFAULT NULL,
     UNIQUE (user_id, quest_id)
 );

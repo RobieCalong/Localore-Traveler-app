@@ -76,16 +76,16 @@ async function seedDatabase() {
     "What do you say? Will you brave the boroughs?",
   ];
   const messagesNycQuest2 = [
-    "Have fun at the old town",
-    "Invite friends and have a fun night out",
-    "Have fun and be responsible!",
-    "Do you accept the quest?",
+    "Lurking in the shadows, a lone rat dashes between garbage cans, pizza slice in its mouth.",
+    "Can you spot NYC's most famous celebrity, Pizza Rat?",
+    "Snap a pic to earn this exclusive badge! Do you accept?",
   ];
   const messagesNycQuest3 = [
-    "Go see your favorite band or artist",
-    "Enjoy the show with friends and drinks",
-    "Jam out to your favorite songs!",
-    "Do you accept the quest?",
+    "The hustle and bustle of NYC is infamous!",
+    "The grind never stops, and the city never sleeps!",
+    "Locals know, you're not really here unless you've invoked the magic words...",
+    "I'm walkin' here!",
+    "Snap a pic of either you or someone saying these magic words and you'll earn this badge.",
   ];
   const messagesCumberlandQuest1 = [
     "Don't fall in the water!",
@@ -163,20 +163,20 @@ async function seedDatabase() {
   }
   await seedQuests();
 
-  //    createUserQuest(userId, questId)
+  //    createUserQuest(userId, questId, complete, quest_image_url)
   async function seedUsersQuests() {
-    await createUserQuest(1, 1); //user 1, quest 1 = "Flying Saucer Hunt"
-    await createUserQuest(1, 2); //user 1, quest 2 = "Chopped & Screwed"
-    await createUserQuest(1, 3); //user 1, quest 3 = "Soreal Dance Studio"
-    await createUserQuest(1, 4);
-    await createUserQuest(1, 5);
-    await createUserQuest(1, 6);
-    await createUserQuest(1, 7);
-    await createUserQuest(1, 8);
-    await createUserQuest(1, 9);
-    await createUserQuest(1, 10);
-    await createUserQuest(1, 11);
-    await createUserQuest(1, 12);
+  await createUserQuest(1, 1, false, null); //user 1, quest 1 = "Flying Saucer Hunt"
+  await createUserQuest(1, 2, false, null); //user 1, quest 2 = "Chopped & Screwed"
+  await createUserQuest(1, 3, false, null); //user 1, quest 3 = "Soreal Dance Studio"
+  await createUserQuest(1, 4, false, null);
+  await createUserQuest(1, 5, false, null);
+  await createUserQuest(1, 6, false, null);
+  await createUserQuest(1, 7, false, null);
+  await createUserQuest(1, 8, false, null);
+  await createUserQuest(1, 9, false, null);
+  await createUserQuest(1, 10, false, null);
+  await createUserQuest(1, 11, false, null);
+  await createUserQuest(1, 12, false, null);
   }
   await seedUsersQuests();
   
