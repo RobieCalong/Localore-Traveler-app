@@ -22,3 +22,16 @@ export async function getUserQuest() {
   const { rows: user_quest } = await db.query(SQL);
   return user_quest;
 }
+
+export async function markQuestComplete(id, complete = false, quest_image_url = null) {
+  const SQL = `
+    UPDATE users_quests
+    SET complete = $2, quest_image_url = $3
+    WHERE id = $1
+    RETURNING *
+  `;
+
+  const { rows: [userQuest] } = await db.query(SQL, [id, complete, quest_image_url]);
+  return userQuest
+}
+  
