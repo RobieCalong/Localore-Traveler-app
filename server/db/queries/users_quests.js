@@ -1,11 +1,36 @@
 import db from "#db/client";
 
-export async function createUserQuest(user_id, quest_id, complete = false, quest_image_url = null) {
+export async function createUserQuest(
+  user_id,
+  quest_id,
+  complete = false,
+  quest_image_url = null
+) {
   const SQL = `
     INSERT INTO users_quests
         (user_id, quest_id, complete, quest_image_url)
     VALUES
         ($1, $2, $3, $4)
+    RETURNING *
+    `;
+  const {
+    rows: [userQuest],
+  } = await db.query(SQL, [user_id, quest_id, complete, quest_image_url]);
+  return userQuest;
+}
+
+export async function acceptUserQuest(
+  user_id,
+  quest_id,
+  complete = false,
+  quest_image_url = null
+) {
+  const SQL = `
+    INSERT INTO users_quests
+        (user_id, quest_id, complete, quest_image_url)
+    VALUES
+        ($1, $2, $3, $4)
+    ON CONFLICT (user_id, quest_id) DO NOTHING
     RETURNING *
     `;
   const {
@@ -23,7 +48,11 @@ export async function getUserQuest() {
   return user_quest;
 }
 
-export async function markQuestComplete(id, complete = false, quest_image_url = null) {
+export async function markQuestComplete(
+  id,
+  complete = false,
+  quest_image_url = null
+) {
   const SQL = `
     UPDATE users_quests
     SET complete = $2, quest_image_url = $3
@@ -31,7 +60,8 @@ export async function markQuestComplete(id, complete = false, quest_image_url = 
     RETURNING *
   `;
 
-  const { rows: [userQuest] } = await db.query(SQL, [id, complete, quest_image_url]);
-  return userQuest
+  const {
+    rows: [userQuest],
+  } = await db.query(SQL, [id, complete, quest_image_url]);
+  return userQuest;
 }
-  
