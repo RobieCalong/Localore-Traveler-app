@@ -1,10 +1,6 @@
 import db from "#db/client";
 import { createUser } from "#db/queries/users";
-<<<<<<< HEAD
-// import { createLevel } from "./queries/levels";
-=======
 import { createLevel } from "#db/queries/levels";
->>>>>>> origin/main
 import { createUserQuest } from "#db/queries/users_quests";
 import { createQuest } from "#db/queries/quests";
 import { createBadge } from "#db/queries/badges";
@@ -152,9 +148,6 @@ await seed();
 await seedDatabase();
 await db.end();
 console.log("🌱 Database seeded.");
-<<<<<<< HEAD
-Coll
-=======
 
 async function seed() {
   await createUser("seedUser1", "seedPassword1");
@@ -336,4 +329,3 @@ async function seedDatabase() {
   }
   await seedLevels()
 }
->>>>>>> origin/main

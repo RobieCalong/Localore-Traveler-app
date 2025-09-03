@@ -1,30 +1,5 @@
 import db from "#db/client";
 
-<<<<<<< HEAD
-export async function createUserQuest(user_id, quest_id) {
-    const SQL = `
-    INSERT INTO users_quests
-        (user_id, quest_id)
-    VALUES
-        ($1, $2)
-    RETURNING *
-    `;
-    const {
-        rows: [userQuest],
-    } = await db.query(SQL, [user_id, quest_id])
-    return userQuest
-}
-
-export async function getUserQuest() {
-    const SQL = `
-    SELECT *
-    FROM user_quests
-    `;
-    const { rows: user_quest } = db.query(SQL)
-    return user_quest
-
-}
-=======
 export async function createUserQuest(user_id, quest_id, complete = false, quest_image_url = null) {
   const SQL = `
     INSERT INTO users_quests
@@ -60,4 +35,3 @@ export async function markQuestComplete(id, complete = false, quest_image_url = 
   return userQuest
 }
   
->>>>>>> origin/main

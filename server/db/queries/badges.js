@@ -15,18 +15,6 @@ export async function createBadge(name, badge_image) {
 }
 
 export async function getBadges() {
-<<<<<<< HEAD
-    const SQL = `
-    SELECT *
-    FROM tracks
-    `;
-    const { rows: badges } = await db.query(SQL)
-    return badges
-}
-
-export async function getBadgeById(id) {
-    const SQL =`
-=======
   const SQL = `
     SELECT *
     FROM tracks
@@ -37,19 +25,12 @@ export async function getBadgeById(id) {
 
 export async function getBadgeById(id) {
   const SQL = `
->>>>>>> origin/main
     SELECT *
     FROM badges
     WHERE id = $1
     `;
-<<<<<<< HEAD
-    const { rows: [badge] } = await db.query(SQL, [id])
-    return badge
-}
-=======
   const {
     rows: [badge],
   } = await db.query(SQL, [id]);
   return badge;
 }
->>>>>>> origin/main
