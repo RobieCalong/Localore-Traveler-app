@@ -26,8 +26,9 @@ router.route("/:id").get((req, res) => {
   res.status(200).json(req.quest);
 });
 
-router.route("/:id/upload").put((req, res) => {
+//  can delete this route because PUT /usersquests/:id/complete has been created
+// router.route("/:id/upload").put((req, res) => {
     
-})
+// })
 
 export default router;
