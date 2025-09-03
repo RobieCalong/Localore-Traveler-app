@@ -1,17 +1,16 @@
 import db from "#db/client";
 import { createUser } from "#db/queries/users";
 // import { createLevel } from "./queries/levels";
-import { createUserQuest } from "./queries/users_quests";
-import { createQuest } from "./queries/quests";
-import { createBadge } from "./queries/badges";
+import { createUserQuest } from "#db/queries/users_quests";
+import { createQuest } from "#db/queries/quests";
+import { createBadge } from "#db/queries/badges";
 
 await db.connect();
-await seed();
-await db.end();
-console.log("🌱 Database seeded.");
-
 async function seed() {
   await createUser("seedUser1", "seedPassword1");
+  await seedBadges
+  await seedQuests
+  await seedUsersQuests
 }
 
 function seedDatabase() {
@@ -124,7 +123,8 @@ function seedDatabase() {
     await createQuest("Hot Dog", messagesCumberlandQuest2, 1, "Cumberland", 11);
     await createQuest("", messagesCumberlandQuest3, 1, "Cumberland", 12);
   }
-  seedQuests();
+    seedQuests();
+
 
   //    createUserQuest(userId, questId)
   async function seedUsersQuests() {
@@ -144,4 +144,7 @@ function seedDatabase() {
   seedUsersQuests();
 }
 seedDatabase();
+await seed();
+await db.end();
+console.log("🌱 Database seeded.");
 Coll
