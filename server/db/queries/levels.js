@@ -22,3 +22,15 @@ export async function getLevels() {
   const { rows: levels } = await db.query(SQL);
   return levels;
 }
+
+export async function getLevelById() {
+  const SQL =`
+    SELECT *
+    FROM levels
+    WHERE id = $1
+    `;
+  const { 
+    rows: [level],
+  } = await db.query(SQL, [id]);
+  return level;
+}
