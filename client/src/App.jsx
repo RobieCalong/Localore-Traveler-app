@@ -1,9 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
 
-import Homepage from "./components/Homepage";
 import Navigation from "./components/Navigation";
+import Homepage from "./components/Homepage";
 import Map from "./components/Map";
+import CityQuests from "./components/CityQuests";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/map" element={<Map />} />
+
+        <Route path="/location/:city/quests" element={<CityQuests />} />
       </Routes>
     </>
   );

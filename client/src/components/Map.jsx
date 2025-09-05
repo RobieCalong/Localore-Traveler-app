@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 import { fetchAllLocations } from "../api/index";
 
@@ -8,8 +9,8 @@ function Map() {
   // fetch map from database
   useEffect(() => {
     async function getMap() {
-      const res = await fetchAllLocations();
-      setLocations(res);
+      const data = await fetchAllLocations();
+      setLocations(data);
     }
     getMap();
   }, []);
@@ -19,12 +20,14 @@ function Map() {
     return locations.map((city, idx) => {
       return (
         <div key={idx} className="flex-item">
-          <img
-            src={`/assets/maps/${city.location}_map.png`}
-            alt={`city name is ${city.location}`}
-            width="200px"
-            className="box-model"
-          />
+          <Link to={`/location/${city.location}/quests`}>
+            <img
+              src={`/assets/maps/${city.location}_map.png`}
+              alt={`city name is ${city.location}`}
+              width="200px"
+              className="box-model"
+            />
+          </Link>
           <p>City: {city.location}</p>
         </div>
       );
