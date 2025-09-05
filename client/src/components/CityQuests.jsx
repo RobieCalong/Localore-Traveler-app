@@ -16,7 +16,7 @@ function CityQuests() {
   useEffect(() => {
     async function getCityQuests() {
       const data = await fetchQuestsByLocation(param.city.toLowerCase());
-      console.log(data);
+      // console.log(data);    //data = all quests from city
       setCityQuests(data);
     }
     getCityQuests();
