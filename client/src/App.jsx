@@ -5,17 +5,22 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Map from "./components/Map";
 import CityQuests from "./components/CityQuests";
+import SingleQuest from "./components/SingleQuest";
+import QuestProvider from "./components/QuestProvider";
 
 function App() {
   return (
     <>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/map" element={<Map />} />
+      <QuestProvider>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/map" element={<Map />} />
 
-        <Route path="/location/:city/quests" element={<CityQuests />} />
-      </Routes>
+          <Route path="/location/:city/quests" element={<CityQuests />} />
+          <Route path="/quests/:id" element={<SingleQuest />} />
+        </Routes>
+      </QuestProvider>
     </>
   );
 }
