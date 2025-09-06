@@ -48,6 +48,17 @@ export async function getUserQuest() {
   return user_quest;
 }
 
+export async function getUserQuestIdByUserIdQuestId(user_id, quest_id) {
+  const SQL = `
+    SELECT users_quests.id FROM users_quests 
+    WHERE user_id = $1 AND quest_id = $2
+  `;
+  const {
+    rows: [usersquestsId],
+  } = await db.query(SQL, [user_id, quest_id]);
+  return usersquestsId;
+}
+
 export async function markQuestComplete(
   id,
   complete = false,

@@ -7,6 +7,7 @@ import Map from "./components/Map";
 import CityQuests from "./components/CityQuests";
 import SingleQuest from "./components/SingleQuest";
 import UploadProof from "./components/UploadProof";
+import Complete from "./components/Complete";
 import QuestProvider from "./components/QuestProvider";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/location/:city/quests" element={<CityQuests />} />
           <Route path="/quests/:id" element={<SingleQuest />} />
           <Route path="/quests/:id/upload" element={<UploadProof />} />
+          <Route path="/quests/:id/complete" element={<Complete />} />
         </Routes>
       </QuestProvider>
     </>

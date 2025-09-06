@@ -12,9 +12,9 @@ function SingleQuest() {
   const [say, setSay] = useState("Hey there, fellow traveler.");
 
   const nextButton = () => {
-    //helper function
+    //helper function uses updater callback of setMessageIndex to immediately use its messageIndex value
     function nextMessage() {
-      setMessageIndex((prevIndex) => prevIndex + 1);
+      setMessageIndex((currentIndex) => currentIndex + 1);
       setSay(quest.messages[messageIndex]);
     }
 
@@ -30,7 +30,7 @@ function SingleQuest() {
     // helper function
     async function acceptQuest(quest_id) {
       const data = await acceptUserQuest(quest_id);
-      // console.log("this is acceptQuestFunction: ", data);
+      console.log("this is acceptQuestButtonFunction: ", data);
     }
 
     // show "accept quest button" if messageIndex is >= messages.length
@@ -38,11 +38,14 @@ function SingleQuest() {
       quest.messages !== undefined && messageIndex >= quest.messages?.length ? (
         <div>
           <Link to={`/location/${quest.location}/quests`}>
-            <button>No, return to Quests</button>
+            <button>No, return to City Quests</button>
           </Link>
-          <Link to={`/quests/${quest.id}/upload`}>
-            <button onClick={() => acceptQuest(quest.id)}>Accept Quest</button>
-          </Link>
+          {/* <Link to={`/quests/${quest.id}/upload`}> */}
+          {console.log("this is quest.id @LINK: ", quest.id)}
+          <button onClick={() => acceptQuest(quest.id)}>
+            Yes, Accept Quest
+          </button>
+          {/* </Link> */}
         </div>
       ) : null;
     return jsx;

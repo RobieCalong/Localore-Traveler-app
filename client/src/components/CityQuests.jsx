@@ -26,7 +26,7 @@ function CityQuests() {
   function onClickSetQuest(quest) {
     localStorage.setItem("currentQuest", JSON.stringify(quest, null, 2));
     // react route to <SingleQuest />
-    navigateUrl(`/quests/:id`);
+    navigateUrl(`/quests/${quest.id}`);
     setQuest(quest);
   }
 
