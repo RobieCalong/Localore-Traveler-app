@@ -56,7 +56,12 @@ export async function acceptUserQuest(questId) {
 //getting users_quests.id
 export async function fetchUserQuestIdByQuestId(questId) {
   try {
-    const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`);
+    const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token2}`,
+      },
+    });
 
     if (!res.ok) throw new Error("usersquest_ID not found");
 

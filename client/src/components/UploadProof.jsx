@@ -1,30 +1,34 @@
-import React, { useEffect } from "react";
-import { useLocation, useParams, redirect } from "react-router";
+import React, { useContext, useEffect } from "react";
+import { useParams, useNavigate } from "react-router";
 import { fetchUserQuestIdByQuestId, markUserQuestComplete } from "../api/index";
+import { useState } from "react";
 
 function UploadProof() {
   const { id } = useParams();
-  const questId = id;
+  // id useParams refers to quest_id from the react route /quests/:id/upload
 
-  // GET userId by JWT token from localstorage (when user logins, it saves jwt in localstorage)
-  // const jwt = localStorage.getItem("jwt")
-  // for now userId is hard-coded
-  const userId = 2;
+  const [usersQuestID, setUsersQuestID] = useState(null);
 
+  const navigate = useNavigate();
+
+  // getting usersQuestID and set useState
   useEffect(() => {
-    async function getUserQuestId(questId) {
-      const data = await fetchUserQuestIdByQuestId(questId);
-      console.log(data);
+    async function getUserQuestId(id) {
+      const data = await fetchUserQuestIdByQuestId(id);
+      console.log("this is UserQuestID: ", data);
+      setUsersQuestID(data.id);
     }
-    getUserQuestId(questId);
+    getUserQuestId(id);
   }, []);
 
+  // complete users quest by submitting URL photo based on usersQuestID
   async function uploadImageUrl(formData) {
     const imageUrl = formData.get("img-url");
     console.log("this is imageUrl: ", imageUrl); // hopefully its datatype: string
 
-    const data = await markUserQuestComplete(usersQuestId, imageUrl);
-    return redirect(`/quests/${questId}/complete`);
+    const data = await markUserQuestComplete(usersQuestID, imageUrl);
+    console.log(data);
+    return navigate(`/quests/${id}/complete`);
   }
 
   return (

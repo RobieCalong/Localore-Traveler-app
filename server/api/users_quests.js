@@ -17,11 +17,17 @@ router.route("/").get((req, res) => {
 // /GET /usersquests/quest/:id     ----> getting users_quests.id
 router.route("/quest/:questId").get(getUserFromToken, async (req, res) => {
   const { questId } = req.params;
+  const quest_id = parseInt(questId, 10);
 
   const user_id = req.user.id;
+  console.log("User ID:", req.user?.id, "Quest ID:", quest_id);
 
   try {
-    const usersquestsID = await getUserQuestIdByUserIdQuestId(user_id, questId);
+    const usersquestsID = await getUserQuestIdByUserIdQuestId(
+      user_id,
+      quest_id
+    );
+    // console.log("this is userquestsID value: ", usersquestsID);
 
     if (!usersquestsID) {
       return res.status(404).send("usersquests_id not found");
@@ -44,7 +50,7 @@ router.route("/quest/:questId").post(getUserFromToken, async (req, res) => {
 
   try {
     const userQuest = await acceptUserQuest(user_id, quest_id);
-    console.log("console log hit: ", userQuest);
+    // console.log("check data for userQuest: ", userQuest);
 
     // if userQuest has no value, then it means the user already accepted the quest
     if (!userQuest) {
