@@ -1,0 +1,12 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allows wrapping to next line if needed */
+  gap: 20px; /* Cleaner spacing than margin */
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-item {
+  flex: 0 0 auto;
+}

@@ -46,8 +46,15 @@ router.route("/:city").get(async (req, res) => {
 
 //  /location/:city/quests
 router.route("/:city/quests").get(async (req, res) => {
-  const cityQuests = await getQuestsByLocation(req.city);
-  res.status(200).json(cityQuests);
+  try {
+    const cityQuests = await getQuestsByLocation(req.city);
+    if (!cityQuests) return res.status(404).send("City Quests Not found");
+
+    res.status(200).json(cityQuests);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Bad request City Quests");
+  }
 });
 
 export default router;
