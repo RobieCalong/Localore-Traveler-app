@@ -7,7 +7,7 @@ import { createBadge } from "#db/queries/badges";
 
 await db.connect();
 async function seed() {
-  await createUser("seedUser1", "seedPassword1");
+  await createUser("seedUser1", "seedPassword1", 0, 0);
   await seedBadges
   await seedQuests
   await seedUsersQuests

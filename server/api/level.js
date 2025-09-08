@@ -21,7 +21,4 @@ router
         res.status(200).json(level)
     })
 
-//Full thoughts on obtaining levels
-//GET /levels (fetches levels)
-//GET /levels:id (fetches specific level by id)
 
