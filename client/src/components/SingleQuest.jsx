@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import QuestContext from "./QuestContext";
 import NpcBob from "./NpcBob";
 import { acceptUserQuest } from "../api/index";
