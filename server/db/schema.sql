@@ -17,7 +17,7 @@ CREATE TABLE users (
   username text NOT NULL UNIQUE,
   password text NOT NULL,
   experience int NOT NULL,
-  level_id int NOT NULL REFERENCES levels(id) ON DELETE CASCADE
+  level_id int DEFAULT 1 NOT NULL REFERENCES levels(id) ON DELETE CASCADE
 );
 
 CREATE TABLE badges (

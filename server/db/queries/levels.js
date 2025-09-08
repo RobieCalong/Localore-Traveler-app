@@ -38,12 +38,12 @@ export async function getLevelById(id) {
 export async function getUserPointsAndUpdateExperience(user_id) {
   const SQL =`
   SELECT
-    sum(q.points) AS total_experience
-  FROM quests q
+    sum(q.points) total_experience
+  FROM quests AS q
   JOIN users_quests uq ON uq.quest_id = q.id
   WHERE
     uq.user_id = $1
-    AND uq.completed = true
+    AND uq.complete = true
   `;
   const {
     rows: [result],
