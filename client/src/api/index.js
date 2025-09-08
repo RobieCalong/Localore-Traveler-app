@@ -1,5 +1,7 @@
 const BASE_URL = `http://localhost:3000`;
 
+//hard-coded token for user_id = 1        { "username": "seedUser1", "password": "seedPassword1"  }
+const token1 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkVXNlcjEiLCJpYXQiOjE3NTczNTkyMDUsImV4cCI6MTc1Nzk2NDAwNX0.BQM2s0fqa27m7qjnkjg85kvucXIrW-nex61RLHtiBsM`;
 //hard-coded token for user_id = 2        { "username": "newuser", "password": "newuser12345"  }
 const token2 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzU3MDg4NzgwLCJleHAiOjE3NTc2OTM1ODB9.QQcalQqHBM3ixwTUhe_y9lN0FgJoUkQP8dRHA7cL-iU`;
 //////////////////////////////////////////////////////////
@@ -38,7 +40,7 @@ export async function acceptUserQuest(questId) {
     const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token2}`,
+        Authorization: `Bearer ${token1}`,
       },
     });
 
@@ -59,7 +61,7 @@ export async function fetchUserQuestIdByQuestId(questId) {
     const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token2}`,
+        Authorization: `Bearer ${token1}`,
       },
     });
 
@@ -80,7 +82,7 @@ export async function markUserQuestComplete(usersQuestId, imageUrl) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token2}`,
+          Authorization: `Bearer ${token1}`,
         },
         body: JSON.stringify({ quest_image_url: imageUrl }),
       }
