@@ -40,3 +40,12 @@ export async function getQuestsByLocation(city) {
   const { rows: cityQuests } = await db.query(sql, [city]);
   return cityQuests;
 }
+
+//GETS QUEST POINTS
+export async function getQuestPoints(points) {
+  const SQL =`
+  SELECT * FROM quests where points = $1
+  `;
+  const { rows: questPoints } = await db.query(SQL, [points]);
+  return questPoints;
+}
