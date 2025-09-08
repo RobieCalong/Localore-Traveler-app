@@ -1,28 +1,112 @@
 import express from "express";
-const router = express.Router();
-export default router;
-
 import { createUser, getUserByUsernameAndPassword } from "#db/queries/users";
 import requireBody from "#middleware/requireBody";
 import { createToken } from "#utils/jwt";
 
-router
-  .route("/register")
-  .post(requireBody(["username", "password"]), async (req, res) => {
-    const { username, password } = req.body;
-    const user = await createUser(username, password);
+const router = express.Router();
 
-    const token = await createToken({ id: user.id });
-    res.status(201).send(token);
-  });
+/**
+ * POST /users/register
+ * Creates a new user account
+ */
 
-router
-  .route("/login")
-  .post(requireBody(["username", "password"]), async (req, res) => {
-    const { username, password } = req.body;
-    const user = await getUserByUsernameAndPassword(username, password);
-    if (!user) return res.status(401).send("Invalid username or password.");
+router.post(
+    "/register",
+    requireBody(["username", "password"]),
+    async (req, res, next) => {
+        try {
+            const { username, password } = req.body;
+            
+            // Validate username and password format
+            if (username.length < 3) {
+                return res.status(400).json({
+                    error: "Username must be at least 3 characters long"
+                });
+            }
+            
+            if (password.length < 6) {
+                return res.status(400).json({
+                    error: "Password must be at least 6 characters long"
+                });
+            }
+            
+            // Create user (password will be hashed in createUser function)
+            const user = await createUser(username, password);
+            
+            // Generate JWT token
+            const token = await createToken({ 
+                id: user.id,
+                username: user.username
+              });
+            
+            // Send success response with token
+            res.status(201).json({
+                message: "User created successfully",
+                token: token,
+                user: {
+                    id: user.id,
+                    username: user.username
+                }
+            });
+        } catch (error) {
+            // Handle duplicate username error
+            if (error.message === 'Username already exists') {
+                return res.status(409).json({
+                    error: "Username already exists"
+                });
+            }
+            
+            // Pass other errors to error handler
+            next(error);
+        }
+    }
+);
 
-    const token = await createToken({ id: user.id });
-    res.send(token);
-  });
+/**
+ * POST /users/login
+ * Authenticates user and returns JWT token
+ */
+router.post(
+    "/login",
+    requireBody(["username", "password"]),
+    async (req, res, next) => {
+        try {
+            const { username, password } = req.body;
+            
+            // Verify credentials
+            const user = await getUserByUsernameAndPassword(username, password);
+            
+            if (!user) {
+                return res.status(401).json({
+                    error: "Invalid username or password"
+                });
+            }
+            
+            // Generate JWT token
+            const token = await createToken({ 
+                id: user.id,
+                username: user.username 
+            });
+
+       // Send success response
+            res.json({
+                message: "Login successful",
+                token: token,
+                user: {
+                    id: user.id,
+                    username: user.username
+                }
+            });
+        } catch (error) {
+            // Log error for debugging
+            console.error("Login error:", error);
+            
+            // Send generic error to client
+            res.status(500).json({
+                error: "An error occurred during login"
+            });
+        }
+    }
+);
+
+export default router;
