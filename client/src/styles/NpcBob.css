@@ -1,0 +1,39 @@
+.box-model {
+  /* background-color: aqua; */
+  margin: 0;
+  border: 1px solid black;
+  padding: 0;
+}
+
+.box-bubble {
+  /* background-color: blueviolet; */
+}
+.container {
+  position: relative;
+  width: 300px; /* match your image width */
+  height: auto; /* or set a fixed height if needed */
+  left: 80px;
+  top: 40px;
+}
+.box-text {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  /* translate(left/right, up/down */
+  transform: translate(-50%, -86%);
+
+  /* background-color: pink; */
+  margin: 0;
+  /* border: 1px solid black; */
+  padding: 0.5rem;
+  color: black;
+  width: 80%;
+}
+
+.bubble-image-text {
+  /* position: absolute;
+  right: 50%;
+  left: 50%;
+  bottom: 15%; */
+  place-self: center;
+}
