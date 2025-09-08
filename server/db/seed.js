@@ -173,7 +173,7 @@ async function seedDatabase() {
   //    createUserQuest(userId, questId, complete, quest_image_url)
   async function seedUsersQuests() {
   await createUserQuest(1, 1, false, null); //user 1, quest 1 = "Flying Saucer Hunt"
-  await createUserQuest(1, 2, false, null); //user 1, quest 2 = "Chopped & Screwed"
+  await createUserQuest(1, 2, true, null); //user 1, quest 2 = "Chopped & Screwed"
   await createUserQuest(1, 3, false, null); //user 1, quest 3 = "Soreal Dance Studio"
   await createUserQuest(1, 4, false, null);
   await createUserQuest(1, 5, false, null);
