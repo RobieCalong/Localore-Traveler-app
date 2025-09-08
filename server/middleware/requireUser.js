@@ -5,7 +5,7 @@ import { getUserById } from '../db/queries/users.js';
  * Middleware to verify JWT token and attach user to request
  * Used for protected routes
  */
-export async function requireUser(req, res, next) {
+export default async function requireUser(req, res, next) {
     try {
         // Extract token from Authorization header
         const token = extractTokenFromHeader(req.headers.authorization);

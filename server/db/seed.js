@@ -150,7 +150,7 @@ await db.end();
 console.log("🌱 Database seeded.");
 
 async function seed() {
-  await createUser("seedUser1", "seedPassword1");
+  await createUser("seedUser1", "seedPassword1", 0, 0);
 }
 
 async function seedDatabase() {
