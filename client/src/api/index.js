@@ -96,3 +96,5 @@ export async function markUserQuestComplete(usersQuestId, imageUrl) {
     console.log(error.message);
   }
 }
+
+//fetching user info

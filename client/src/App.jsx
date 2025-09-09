@@ -11,6 +11,7 @@ import Complete from "./components/Complete";
 import QuestProvider from "./components/QuestProvider";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import UserHomepage from "./components/UserHomepage";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/map" element={<Map />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route path="/userhomepage" element={<UserHomepage />} />
           <Route path="/location/:city/quests" element={<CityQuests />} />
           <Route path="/quests/:id" element={<SingleQuest />} />
           <Route path="/quests/:id/upload" element={<UploadProof />} />
