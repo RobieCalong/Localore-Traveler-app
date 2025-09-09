@@ -10,7 +10,9 @@ function Login() {
     try {
       const res = await axios.post("/api/login", { username, password });
       alert("Logged in successfully!");
-      // Optionally store token or user info
+      // Store token and userId in localStorage
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userId', res.data.user.id);
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     }

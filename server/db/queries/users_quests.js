@@ -1,3 +1,4 @@
+
 import db from "#db/client";
 
 export async function createUserQuest(
@@ -75,4 +76,14 @@ export async function markQuestComplete(
     rows: [userQuest],
   } = await db.query(SQL, [id, complete, quest_image_url]);
   return userQuest;
+}
+
+export async function getCompletedQuestsByUserId(user_id) {
+  const SQL = `
+    SELECT quests.* FROM users_quests
+    JOIN quests ON users_quests.quest_id = quests.id
+    WHERE users_quests.user_id = $1 AND users_quests.complete = true
+  `;
+  const { rows } = await db.query(SQL, [user_id]);
+  return rows;
 }
