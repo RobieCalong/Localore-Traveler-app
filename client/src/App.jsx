@@ -9,6 +9,8 @@ import SingleQuest from "./components/SingleQuest";
 import UploadProof from "./components/UploadProof";
 import Complete from "./components/Complete";
 import QuestProvider from "./components/QuestProvider";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/map" element={<Map />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           <Route path="/location/:city/quests" element={<CityQuests />} />
           <Route path="/quests/:id" element={<SingleQuest />} />
