@@ -1,3 +1,4 @@
+import { getCompletedQuestsByUserId } from "#db/queries/users_quests";
 import express, { Router } from "express";
 import {
   acceptUserQuest,
@@ -80,6 +81,16 @@ router.route("/:id/complete").put(async (req, res) => {
   } catch (err) {
     res.status(500).send("Error updating quest completion");
   }
+});
+
+// GET /usersquests/completed/:userId
+router.get('/completed/:userId', getUserFromToken, requireUser, async (req, res) => {
+  const { userId } = req.params;
+  if (parseInt(userId, 10) !== req.user.id) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
+  const completedQuests = await getCompletedQuestsByUserId(userId);
+  res.json(completedQuests);
 });
 
 export default router;

@@ -97,4 +97,49 @@ export async function markUserQuestComplete(usersQuestId, imageUrl) {
   }
 }
 
+export async function fetchCompletedQuests(userId, token) {
+  try {
+    const res = await fetch(`${BASE_URL}/usersquests/completed/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) throw new Error("Completed quests not found");
+    return await res.json();
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 //fetching user info
+export async function fetchUserInfo(userId, token = token1) {
+  try {
+    const res = await fetch(`${BASE_URL}/users/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error("User info not found");
+
+      const data = await res.json();
+      return data
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+export async function fetchUserBadges(userId, token) {
+  try {
+    const res = await fetch(`${BASE_URL}/users_badges/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error("Badges not found");
+    return await res.json();
+  } catch (error) {
+    console.log(error.message)
+  }
+};
