@@ -2,6 +2,9 @@ import express from "express";
 import { createUser, getUserByUsernameAndPassword } from "#db/queries/users";
 import requireBody from "#middleware/requireBody";
 import { createToken } from "#utils/jwt";
+import { getUserById } from "#db/queries/users";
+import getUserFromToken from "#middleware/getUserFromToken";
+import requireUser from "#middleware/requireUser";
 
 const router = express.Router();
 
@@ -108,5 +111,24 @@ router.post(
         }
     }
 );
+
+
+router.get("/:userId", getUserFromToken, requireUser, async (req, res, next) => {
+    try {
+        const { userId } = req.params;
+        // Only allow users to access their own info
+        if (parseInt(userId, 10) !== req.user.id) {
+            return res.status(403).json({ error: "Forbidden: You can only access your own user info." });
+        }
+        const user = await getUserById(userId);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        res.json(user);
+    } catch(error) {
+        next(error);
+    }
+});
+
 
 export default router;
