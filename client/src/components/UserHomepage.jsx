@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { fetchUserInfo, fetchCompletedQuests, fetchUserBadges } from  "../api/index";
 
-export default function userHomapge () {
+export default function userHomepage () {
     const [user, setUser] = useState(null)
     const [badges, setBadges] = useState([])
     const [completedQuests, setCompletedQuests] = useState([])
