@@ -3,17 +3,27 @@ import { useState } from "react";
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
-  const handleRegister = async (e) => {
+  async function handleRegister(e) {
     e.preventDefault();
-    try {
-      const res = await axios.post("/api/register", { username, password });
-      alert("Registered successfully!");
-    } catch (err) {
-      setError(err.response?.data?.error || "Registration failed");
+  
+    const res = await fetch(`${BASE_URL}/users/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+    });
+  
+    const data = await res.json();
+  
+    if (res.ok) {
+      //  Save token so it can be reused
+      localStorage.setItem("token", data.token);
+      console.log("Registered and token stored:", data.token);
+    } else {
+      console.error(data.error);
     }
-  };
+  }
 
   return (
     <form onSubmit={handleRegister}>

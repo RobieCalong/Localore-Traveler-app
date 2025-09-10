@@ -1,22 +1,31 @@
 import { useState } from "react";
 
+const BASE_URL = `http://localhost:3000`;
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
-  const handleLogin = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
-    try {
-      const res = await axios.post("/api/login", { username, password });
-      alert("Logged in successfully!");
-      // Store token and userId in localStorage
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userId', res.data.user.id);
-    } catch (err) {
-      setError(err.response?.data?.error || "Login failed");
+  
+    const res = await fetch(`${BASE_URL}/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+    });
+  
+    const data = await res.json();
+  
+    if (res.ok) {
+      //  Save token so it can be reused
+      localStorage.setItem("token", data.token);
+      console.log("Logged in and token stored:", data.token);
+    } else {
+      console.error(data.error);
     }
-  };
+  }
 
   return (
     <form onSubmit={handleLogin}>
