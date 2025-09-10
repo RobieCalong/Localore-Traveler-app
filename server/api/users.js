@@ -35,6 +35,7 @@ router.post(
             
             // Create user (password will be hashed in createUser function)
             const user = await createUser(username, password);
+            console.log(user)
             
             // Generate JWT token
             const token = await createToken({ 
@@ -53,6 +54,7 @@ router.post(
             });
         } catch (error) {
             // Handle duplicate username error
+            console.log(error)
             if (error.message === 'Username already exists') {
                 return res.status(409).json({
                     error: "Username already exists"

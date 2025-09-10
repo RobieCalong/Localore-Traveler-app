@@ -1,7 +1,7 @@
 import db from "#db/client";
 import bcrypt from "bcrypt";
 
-export async function createUser(username, password, experience, level_id) {
+export async function createUser(username, password, experience = 0, level_id = 1) {
   const sql = `
   INSERT INTO users
     (username, password, experience, level_id)

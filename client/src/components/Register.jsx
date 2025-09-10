@@ -5,6 +5,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [error] = useState("");
 
+  const BASE_URL = `http://localhost:3000`;
+
   async function handleRegister(e) {
     e.preventDefault();
   

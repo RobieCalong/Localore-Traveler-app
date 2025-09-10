@@ -16,8 +16,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username text NOT NULL UNIQUE,
   password text NOT NULL,
-  experience int NOT NULL,
-  level_id int DEFAULT 1 NOT NULL REFERENCES levels(id) ON DELETE CASCADE
+  experience int DEFAULT 0 NOT NULL,
+  level_id int DEFAULT 0 NOT NULL REFERENCES levels(id) ON DELETE CASCADE
 );
 
 CREATE TABLE badges (
