@@ -1,7 +1,12 @@
 import db from "#db/client";
 import bcrypt from "bcrypt";
 
-export async function createUser(username, password, experience = 0, level_id = 1) {
+export async function createUser(
+  username,
+  password,
+  experience = 0,
+  level_id = 1
+) {
   const sql = `
   INSERT INTO users
     (username, password, experience, level_id)
@@ -33,13 +38,26 @@ export async function getUserByUsernameAndPassword(username, password) {
   return user;
 }
 
+//////// HAD TO REVERT THIS FUNCTION BACK TO ITS ORIGINAL code -- was causing incorrect user_id when verify from token in getUserFromToken middleware
+// export async function getUserById(id) {
+//   const sql = `
+//     SELECT users.*, levels.*
+//     FROM users
+//     JOIN levels ON users.level_id = levels.id
+//     WHERE users.id = $1
+//   `;
+//   const { rows: [user] } = await db.query(sql, [id]);
+//   return user;
+// }
+
 export async function getUserById(id) {
   const sql = `
-    SELECT users.*, levels.*
+    SELECT *
     FROM users
-    JOIN levels ON users.level_id = levels.id
     WHERE users.id = $1
   `;
-  const { rows: [user] } = await db.query(sql, [id]);
+  const {
+    rows: [user],
+  } = await db.query(sql, [id]);
   return user;
 }

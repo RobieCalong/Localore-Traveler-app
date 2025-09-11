@@ -1,9 +1,7 @@
 const BASE_URL = `http://localhost:3000`;
 
 //hard-coded token for user_id = 1        { "username": "seedUser1", "password": "seedPassword1"  }
-const token1 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkVXNlcjEiLCJpYXQiOjE3NTczNTkyMDUsImV4cCI6MTc1Nzk2NDAwNX0.BQM2s0fqa27m7qjnkjg85kvucXIrW-nex61RLHtiBsM`;
-//hard-coded token for user_id = 2        { "username": "newuser", "password": "newuser12345"  }
-const token2 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzU3MDg4NzgwLCJleHAiOjE3NTc2OTM1ODB9.QQcalQqHBM3ixwTUhe_y9lN0FgJoUkQP8dRHA7cL-iU`;
+//const token1 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkVXNlcjEiLCJpYXQiOjE3NTczNTkyMDUsImV4cCI6MTc1Nzk2NDAwNX0.BQM2s0fqa27m7qjnkjg85kvucXIrW-nex61RLHtiBsM`;
 //////////////////////////////////////////////////////////
 
 export async function fetchAllLocations() {
@@ -37,10 +35,14 @@ export async function fetchQuestsByLocation(city) {
 export async function acceptUserQuest(questId) {
   try {
     console.log("this is questID at acceptUserQuest: ", questId);
+
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
     const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token1}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -58,10 +60,13 @@ export async function acceptUserQuest(questId) {
 //getting users_quests.id
 export async function fetchUserQuestIdByQuestId(questId) {
   try {
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
     const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token1}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -76,13 +81,16 @@ export async function fetchUserQuestIdByQuestId(questId) {
 
 export async function markUserQuestComplete(usersQuestId, imageUrl) {
   try {
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
     const res = await fetch(
       `${BASE_URL}/usersquests/${usersQuestId}/complete`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token1}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ quest_image_url: imageUrl }),
       }
@@ -99,6 +107,9 @@ export async function markUserQuestComplete(usersQuestId, imageUrl) {
 
 export async function fetchCompletedQuests(userId, token) {
   try {
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
     const res = await fetch(`${BASE_URL}/usersquests/completed/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -112,34 +123,39 @@ export async function fetchCompletedQuests(userId, token) {
 }
 
 //fetching user info
-export async function fetchUserInfo(userId, token = token1) {
+export async function fetchUserInfo(userId, token) {
   try {
-    const res = await fetch(`${BASE_URL}/users/${userId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
 
-      if (!res.ok) throw new Error("User info not found");
+    const res = await fetch(`${BASE_URL}/users/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      const data = await res.json();
-      return data
+    if (!res.ok) throw new Error("User info not found");
+
+    const data = await res.json();
+    return data;
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 }
 
 export async function fetchUserBadges(userId, token) {
   try {
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
     const res = await fetch(`${BASE_URL}/users_badges/${userId}`, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) throw new Error("Badges not found");
     return await res.json();
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
-};
+}

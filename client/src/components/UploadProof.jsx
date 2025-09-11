@@ -22,12 +22,16 @@ function UploadProof() {
   }, []);
 
   // complete users quest by submitting URL photo based on usersQuestID
-  async function uploadImageUrl(formData) {
+  async function uploadImageUrl(evt) {
+    evt.preventDefault();
+
+    // formData is used to get the imageURL needed to store to the database to mark a quest complete
+    const formData = new FormData(evt.target);
     const imageUrl = formData.get("img-url");
     console.log("this is imageUrl: ", imageUrl); // hopefully its datatype: string
 
     const data = await markUserQuestComplete(usersQuestID, imageUrl);
-    console.log(data);
+    console.log(data); // response from api server marking the quest complete
     return navigate(`/quests/${id}/complete`);
   }
 
@@ -36,7 +40,7 @@ function UploadProof() {
       <h2>Please upload an image URL</h2>
       <img src={`/assets/cloud.png`} alt="upload-cloud-image" />
       <div>
-        <form action={uploadImageUrl}>
+        <form onSubmit={uploadImageUrl}>
           <input type="text" name="img-url" placeholder="Image URL" />
           <button type="submit" name="button">
             Submit
