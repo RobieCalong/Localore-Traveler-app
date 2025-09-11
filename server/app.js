@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(getUserFromToken);
+// app.use(getUserFromToken);
 
 app.get("/", (req, res) => res.send("Hello, World!"));
 
