@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error] = useState("");
+  const navigate = useNavigate();
 
   const BASE_URL = `http://localhost:3000`;
 
@@ -21,7 +23,9 @@ function Register() {
     if (res.ok) {
       //  Save token so it can be reused
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
       console.log("Registered and token stored:", data.token);
+      navigate("/");
     } else {
       console.error(data.error);
     }
