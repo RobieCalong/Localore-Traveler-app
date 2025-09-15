@@ -21,11 +21,11 @@ function Login() {
     const data = await res.json();
   
     if (res.ok) {
-      //  Save token so it can be reused
+      //  Save token and userId so it can be reused
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);
+      localStorage.setItem("userId", data.user.id); // <-- FIXED: always use data.user.id
       console.log("Logged in and token stored:", data.token);
-      navigate("/");
+      navigate(`/userhomepage/${data.user.id}`); // <-- go to correct homepage
     } else {
       console.error(data.error);
     }
