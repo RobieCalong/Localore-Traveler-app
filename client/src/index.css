@@ -4,11 +4,12 @@ body {
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  background: #ffffff;
 }
 #navbar {
   width: 800px;
-  border: 2px solid blue;
-  border-radius: 5px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 0px;
   padding: 10px 5px;
   place-self: center;
   display: grid;

@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Navigation from "./components/Navigation";
+import BurgerMenu from "./components/BurgerMenu";
 import Homepage from "./components/Homepage";
 import Map from "./components/Map";
 import CityQuests from "./components/CityQuests";
@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <QuestProvider>
-        <Navigation />
+  <BurgerMenu />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/map" element={<Map />} />
