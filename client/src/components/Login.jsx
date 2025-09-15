@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = `http://localhost:3000`;
 
@@ -6,6 +7,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error] = useState("");
+  const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -21,7 +23,9 @@ function Login() {
     if (res.ok) {
       //  Save token so it can be reused
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
       console.log("Logged in and token stored:", data.token);
+      navigate("/homepage");
     } else {
       console.error(data.error);
     }
