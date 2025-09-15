@@ -159,3 +159,45 @@ export async function fetchUserBadges(userId, token) {
     console.log(error.message);
   }
 }
+
+export async function fetchUpdateUserExperience() {
+  try {
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
+    const res = await fetch(`${BASE_URL}/level/user/experience`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) throw new Error("Updating User Experience failed");
+
+    const data = await res.text();
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function fetchUpdateUserLevel() {
+  try {
+    const token = localStorage.getItem("token");
+    console.log("Using token:", token);
+
+    const res = await fetch(`${BASE_URL}/level/user/levelname`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) throw new Error("Updating User Level failed");
+
+    const data = await res.text();
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
