@@ -25,7 +25,7 @@ function Register() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.userId);
       console.log("Registered and token stored:", data.token);
-      navigate("/homepage");
+      navigate("/");
     } else {
       console.error(data.error);
     }
