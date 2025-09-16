@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Auth.css"; 
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -11,6 +12,7 @@ function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
+    
   
     const res = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
@@ -32,23 +34,37 @@ function Register() {
   }
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Register</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </form>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1 className="auth-title">Sign Up</h1>
+        <p className="auth-subtitle">
+          Welcome, brave traveller. Your journey begins here. <br />
+          Unlock the map, claim your quest, and step into a world of wonder.{" "}
+          <span className="highlight">Sign up below</span> to begin your adventure.
+        </p>
+
+        <form onSubmit={handleRegister} className="auth-form">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="auth-input"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="auth-input"
+          />
+          <button type="submit" className="auth-btn">
+            Register
+          </button>
+          {error && <p className="auth-error">{error}</p>}
+        </form>
+      </div>
+    </div>
   );
 }
 
