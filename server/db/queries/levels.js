@@ -120,5 +120,7 @@ export async function getLevelAndUpdateLevelId(user_id) {
     rows: [updatedUserLevel],
   } = await db.query(SQL, [levelName, user_id]);
 
+  updatedUserLevel.level_name = levelName;
+
   return updatedUserLevel;
 }

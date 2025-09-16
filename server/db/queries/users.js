@@ -52,8 +52,9 @@ export async function getUserByUsernameAndPassword(username, password) {
 
 export async function getUserById(id) {
   const sql = `
-    SELECT *
+    SELECT users.*, levels.name AS level_name
     FROM users
+    JOIN levels ON users.level_id = levels.id
     WHERE users.id = $1
   `;
   const {
