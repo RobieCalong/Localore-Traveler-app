@@ -1,0 +1,71 @@
+/* BurgerMenu.css - styles for burger menu */
+.burger-menu-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+}
+
+.burger-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+}
+
+.burger-icon span {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin: 7px 0;
+  background: #000 !important;
+  opacity: 1 !important;
+  border: 1px solid rgb(0, 0, 0); /* DEBUG: force visibility */
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.burger-nav {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.burger-nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.burger-nav a:hover {
+  color: #0077ff;
+}
+
+.burger-nav-btn {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+}
+
+.burger-nav-btn:hover {
+  color: #0077ff;
+}

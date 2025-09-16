@@ -1,10 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import QuestContext from "./QuestContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { fetchUpdateUserExperience, fetchUpdateUserLevel } from "../api/index";
 
 function Complete() {
   const { quest } = useContext(QuestContext);
+
+  // after every quest completion, useEffect will update User's experience and level status on the backend
+  useEffect(() => {
+    async function updateUserExperienceAndLevel() {
+      const userExperience = await fetchUpdateUserExperience();
+      // console.log(userExperience);
+      const userLevel = await fetchUpdateUserLevel();
+      // console.log(userLevel);
+    }
+    updateUserExperienceAndLevel();
+  }, []);
 
   return (
     <div>
