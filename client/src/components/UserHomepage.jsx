@@ -66,7 +66,7 @@ export default function UserHomepage () {
                 <ul>
                     {badges.map(badge => (
                         <li key={badge.id}>
-                            <img src={badge.badge_image} alt={badge.name} width={40} />
+                            <img src={`/${badge.badge_image}`} alt={badge.name} width={40} />
                         </li>
                     ))}
                 </ul>

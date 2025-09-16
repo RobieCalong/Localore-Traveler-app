@@ -6,6 +6,31 @@ import { getQuestById } from "#db/queries/quests";
 
 const router = express(Router())
 
+router.get("/users_badges/:userId", async (req, res) => {
+    const { userId } = req.params;
+    try {
+        // Get all completed quests for the user
+        const userQuestsSQL = `
+            SELECT q.badge_id
+            FROM users_quests uq
+            JOIN quests q ON uq.quest_id = q.id
+            WHERE uq.user_id = $1 AND uq.complete = true
+        `;
+        const { rows } = await db.query(userQuestsSQL, [userId]);
+        const badgeIds = rows.map(row => row.badge_id);
+
+        if (badgeIds.length === 0) return res.json([]);
+
+        // Get badge details
+        const badgesSQL = `
+            SELECT * FROM badges WHERE id = ANY($1)
+        `;
+        const { rows: badges } = await db.query(badgesSQL, [badgeIds]);
+        res.json(badges);
+    } catch (err) {
+        res.status(500).send("Error fetching user badges");
+    }
+});
 
 router.route("/users_quests/:id/badge").get(async (req, res) => {
 	const { id } = req.params;
@@ -25,3 +50,5 @@ router.route("/users_quests/:id/badge").get(async (req, res) => {
 		res.status(500).send("Error fetching badge");
 	}
 });
+
+export default router;

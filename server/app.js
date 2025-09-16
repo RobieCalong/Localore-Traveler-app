@@ -13,6 +13,7 @@ import getUserFromToken from "#middleware/getUserFromToken";
 import handlePostgresErrors from "#middleware/handlePostgresErrors";
 import cors from "cors";
 import morgan from "morgan";
+import badgeRouter from "#api/badge";
 
 app.use(cors({ origin: process.env.CORS_ORIGIN ?? /localhost/ }));
 
@@ -30,6 +31,7 @@ app.use("/location", locationRouter);
 app.use("/quests", questsRouter);
 app.use("/usersquests", usersQuests);
 app.use("/level", levelRouter);
+app.use("/", badgeRouter);
 
 app.use(handlePostgresErrors);
 app.use((err, req, res, next) => {

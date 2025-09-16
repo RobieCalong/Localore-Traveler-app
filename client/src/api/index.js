@@ -157,6 +157,7 @@ export async function fetchUserBadges(userId, token) {
     return await res.json();
   } catch (error) {
     console.log(error.message);
+    return [];
   }
 }
 
