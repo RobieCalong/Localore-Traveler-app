@@ -4,12 +4,19 @@ html, body {
   padding: 0;
 }
 
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f6a98b 0%, #f0625d 100%);
+  background-attachment: fixed; 
+  box-sizing: border-box;
+  overflow-x: hidden; 
+}
+
 .auth-container {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #ff9966, #ff5e62);
     font-family: "Poppins", sans-serif;
     color: #fff;
   }

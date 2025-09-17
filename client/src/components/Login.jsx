@@ -40,7 +40,7 @@ function Login() {
           <p className="auth-subtitle">
             Welcome, brave traveller. Your journey begins here. <br />
             Unlock the map, claim your quest, and step into a world of wonder.{" "}
-            <span className="highlight">Sign up below</span> to begin your adventure.
+            <span className="highlight">Login below</span> to continue your adventure.
           </p>
   
           <form onSubmit={handleLogin} className="auth-form">
