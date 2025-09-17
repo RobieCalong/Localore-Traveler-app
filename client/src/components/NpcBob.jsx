@@ -5,7 +5,7 @@ import NpcBubbleText from "./NpcBubbleText";
 function NpcBob({ say }) {
   return (
     <div>
-      <div className="box-model">
+      <div>
         <NpcBubbleText say={say} />
         <img src={`/assets/explorer.png`} alt="npc-bob" width="260px" />
       </div>

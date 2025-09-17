@@ -25,7 +25,6 @@ function Map() {
               src={`/assets/maps/${city.location}_map.png`}
               alt={`city name is ${city.location}`}
               width="200px"
-              className="box-model"
             />
           </Link>
           <p>City: {city.location}</p>
