@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { fetchQuestsByLocation } from "../api/index";
 import QuestContext from "./QuestContext";
 
+import "../styles/CityQuests.css";
+
 function CityQuests() {
   const [cityQuests, setCityQuests] = useState([]);
 
@@ -33,15 +35,24 @@ function CityQuests() {
   function mapCityQuests() {
     return cityQuests.map((quest, idx) => {
       return (
-        <div key={idx}>
-          <span>{quest.title}</span>
-          <button onClick={() => onClickSetQuest(quest)}>See Details</button>
-          <span>REWARDS: </span>
-          <img
-            src={`/assets/badges/badge_${quest.badge_id}.png`}
-            alt="badge image"
-            width="50px"
-          />
+        <div key={idx} className="quest-card">
+          <p className="component-text quest-title">{quest.title}</p>
+          <div>
+            <button
+              onClick={() => onClickSetQuest(quest)}
+              className="see-details-btn"
+            >
+              See Details
+            </button>
+          </div>
+          <p className="component-text">REWARD:</p>
+          <div>
+            <img
+              src={`/assets/badges/badge_${quest.badge_id}.png`}
+              alt="badge image"
+              width="50px"
+            />
+          </div>
         </div>
       );
     });
@@ -49,8 +60,10 @@ function CityQuests() {
 
   return (
     <div>
-      <h2>{param.city} Quests</h2>
-      {cityQuests && <div>{mapCityQuests()}</div>}
+      <h2 className="component-title">{param.city} Quests</h2>
+      {cityQuests && (
+        <div className="city-quests-container">{mapCityQuests()}</div>
+      )}
     </div>
   );
 }

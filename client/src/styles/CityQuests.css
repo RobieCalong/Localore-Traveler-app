@@ -1,0 +1,38 @@
+.city-quests-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  padding: 0.5rem;
+}
+
+.quest-card {
+  background-color: #fefefe;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quest-card button.see-details-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.quest-card button.see-details-btn:hover {
+  background-color: #ff3b2f;
+}
+
+.quest-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
