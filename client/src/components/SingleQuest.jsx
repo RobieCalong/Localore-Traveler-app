@@ -4,6 +4,8 @@ import QuestContext from "./QuestContext";
 import NpcBob from "./NpcBob";
 import { acceptUserQuest } from "../api/index";
 
+import "../styles/SingleQuest.css";
+
 function SingleQuest() {
   const { quest } = useContext(QuestContext);
   // console.log(quest.messages); //messages is an Array
@@ -21,7 +23,12 @@ function SingleQuest() {
     // show "Chat... button" if messageIndex is < messages.length
     const jsx =
       quest.messages !== undefined && messageIndex < quest.messages?.length ? (
-        <button onClick={() => nextMessage()}>Chat ...</button>
+        <button
+          className="chat-btn blinking-element"
+          onClick={() => nextMessage()}
+        >
+          Chat ...
+        </button>
       ) : null;
     return jsx;
   };
@@ -30,17 +37,19 @@ function SingleQuest() {
     // onClick Handler when user accepts Quest
     async function acceptQuest(quest_id) {
       const data = await acceptUserQuest(quest_id);
-      console.log("this is acceptQuestButtonFunction: ", data);
+      // console.log("this is acceptQuestButtonFunction: ", data);
     }
     // show "accept quest button" if messageIndex is >= messages.length
     const jsx =
       quest.messages !== undefined && messageIndex >= quest.messages?.length ? (
         <div>
           <Link to={`/location/${quest.location}/quests`}>
-            <button>No, return to City Quests</button>
+            <button className="chat-btn" style={{ marginRight: "20px" }}>
+              No, return to City Quests
+            </button>
           </Link>
           <Link to={`/quests/${quest.id}/upload`}>
-            <button onClick={() => acceptQuest(quest.id)}>
+            <button className="chat-btn" onClick={() => acceptQuest(quest.id)}>
               Yes, Accept Quest
             </button>
           </Link>
