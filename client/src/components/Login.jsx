@@ -24,7 +24,7 @@ function Login() {
     if (res.ok) {
       //  Save token so it can be reused
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);
+      localStorage.setItem("userId", data.user.id);
       console.log("Logged in and token stored:", data.token);
       navigate(`/userhomepage/${data.user.id}`);
     } else {
