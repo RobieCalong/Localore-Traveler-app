@@ -38,8 +38,8 @@ function Login() {
           {/* Notice: Login title looks different from Sign Up */}
           <h1 className="auth-title login">Login</h1>
           <p className="auth-subtitle">
-            Welcome, brave traveller. Your journey begins here. <br />
-            Unlock the map, claim your quest, and step into a world of wonder.{" "}
+            Welcome back, brave traveller.  <br />
+            {" "}
             <span className="highlight">Login below</span> to continue your adventure.
           </p>
   

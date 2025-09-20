@@ -1,3 +1,22 @@
+/* Map page header styles */
+.map-header {
+  text-align: center;
+  margin: 2rem 0 0.5rem 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  font-family: "Cinzel Decorative", cursive;
+}
+
+.map-separator {
+  width: 80px;
+  height: 3px;
+  background: #fff;
+  margin: 0 auto 2rem auto;
+  border-radius: 2px;
+  opacity: 0.8;
+}
 /* Map.css - styles for the map page */
 .map-gradient {
   height: 100vh;
@@ -9,15 +28,80 @@
   background: linear-gradient(135deg, #ff9966, #ff5e62);
 }
 
+
 .flex-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; /* Allows wrapping to next line if needed */
-  gap: 20px; /* Cleaner spacing than margin */
+  flex-direction: column;
+  gap: 32px;
   justify-content: center;
   align-items: center;
 }
 
 .flex-item {
-  flex: 0 0 auto;
+  position: relative;
+  width: 90vw;
+  max-width: 400px;
+  min-width: 220px;
+  padding: 5vw 3vw;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2vw;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.city-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(1.1rem, 4vw, 2.2rem);
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  pointer-events: none;
+  z-index: 2;
+  padding: 0;
+}
+/* Card hover pop effect */
+.flex-item:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transform: translateY(-8px) scale(1.04);
+  z-index: 2;
+}
+
+
+/* Responsive adjustments for flex-item and city-name */
+@media (max-width: 600px) {
+  .flex-item {
+    width: 98vw;
+    max-width: 98vw;
+    min-width: 0;
+    padding: 6vw 2vw;
+    border-radius: 4vw;
+  }
+  .city-name {
+    font-size: clamp(1rem, 6vw, 1.5rem);
+    padding: 0.4em 0.8em;
+    border-radius: 1.5em;
+  }
+}
+
+@media (min-width: 900px) {
+  .flex-item {
+    width: 340px;
+    max-width: 420px;
+    padding: 32px 20px;
+    border-radius: 18px;
+  }
+}
+
+
+
+.flex-item img {
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
