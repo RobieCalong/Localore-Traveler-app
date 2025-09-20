@@ -16,7 +16,7 @@ function UploadProof() {
   useEffect(() => {
     async function getUserQuestId(id) {
       const data = await fetchUserQuestIdByQuestId(id);
-      console.log("this is UserQuestID: ", data);
+      // console.log("this is UserQuestID: ", data);
       setUsersQuestID(data.id);
     }
     getUserQuestId(id);
@@ -29,10 +29,10 @@ function UploadProof() {
     // formData is used to get the imageURL needed to store to the database to mark a quest complete
     const formData = new FormData(evt.target);
     const imageUrl = formData.get("img-url");
-    console.log("this is imageUrl: ", imageUrl); // hopefully its datatype: string
+    // console.log("this is imageUrl: ", imageUrl); // hopefully its datatype: string
 
     const data = await markUserQuestComplete(usersQuestID, imageUrl);
-    console.log(data); // response from api server marking the quest complete
+    // console.log(data); // response from api server marking the quest complete
     return navigate(`/quests/${id}/complete`);
   }
 
@@ -42,7 +42,13 @@ function UploadProof() {
       <img src={`/assets/cloud.png`} alt="upload-cloud-image" />
       <div>
         <form onSubmit={uploadImageUrl}>
-          <input className="upload-form" type="text" name="img-url" placeholder="Image URL" /><br />
+          <input
+            className="upload-form"
+            type="text"
+            name="img-url"
+            placeholder="Image URL"
+          />
+          <br />
           <button className="proof-btn" type="submit" name="button">
             Submit
           </button>

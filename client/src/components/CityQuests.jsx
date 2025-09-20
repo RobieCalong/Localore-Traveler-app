@@ -60,7 +60,9 @@ function CityQuests() {
           <p className="component-text quest-title">{quest.title}</p>
           <div>
             {isQuestCompleted(quest.id) === true ? (
-              <button className="completed-btn" disabled="true">Completed</button>
+              <button className="completed-btn" disabled={true}>
+                Completed
+              </button>
             ) : (
               <button
                 onClick={() => onClickSetQuest(quest)}

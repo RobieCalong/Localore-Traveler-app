@@ -1,9 +1,5 @@
 const BASE_URL = `http://localhost:3000`;
 
-//hard-coded token for user_id = 1        { "username": "seedUser1", "password": "seedPassword1"  }
-//const token1 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkVXNlcjEiLCJpYXQiOjE3NTczNTkyMDUsImV4cCI6MTc1Nzk2NDAwNX0.BQM2s0fqa27m7qjnkjg85kvucXIrW-nex61RLHtiBsM`;
-//////////////////////////////////////////////////////////
-
 export async function fetchAllLocations() {
   try {
     const res = await fetch(`${BASE_URL}/location`);
@@ -34,10 +30,10 @@ export async function fetchQuestsByLocation(city) {
 
 export async function acceptUserQuest(questId) {
   try {
-    console.log("this is questID at acceptUserQuest: ", questId);
+    // console.log("this is questID at acceptUserQuest: ", questId);
 
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
       method: "POST",
@@ -46,7 +42,7 @@ export async function acceptUserQuest(questId) {
       },
     });
 
-    console.log(res);
+    // console.log(res);
     if (!res.ok) throw new Error("Failed to accept UserQuest");
 
     const data = await res.text();
@@ -61,7 +57,7 @@ export async function acceptUserQuest(questId) {
 export async function fetchUserQuestIdByQuestId(questId) {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/usersquests/quest/${questId}`, {
       method: "GET",
@@ -82,7 +78,7 @@ export async function fetchUserQuestIdByQuestId(questId) {
 export async function markUserQuestComplete(usersQuestId, imageUrl) {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(
       `${BASE_URL}/usersquests/${usersQuestId}/complete`,
@@ -108,7 +104,7 @@ export async function markUserQuestComplete(usersQuestId, imageUrl) {
 export async function fetchCompletedQuests(userId, token) {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/usersquests/completed/${userId}`, {
       headers: {
@@ -126,7 +122,7 @@ export async function fetchCompletedQuests(userId, token) {
 export async function fetchUserInfo(userId, token) {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/users/${userId}`, {
       method: "GET",
@@ -148,7 +144,7 @@ export async function fetchUserInfo(userId, token) {
 export async function fetchUserBadges(userId, token) {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/users_badges/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -164,7 +160,7 @@ export async function fetchUserBadges(userId, token) {
 export async function fetchUpdateUserExperience() {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/level/user/experience`, {
       method: "PUT",
@@ -185,7 +181,7 @@ export async function fetchUpdateUserExperience() {
 export async function fetchUpdateUserLevel() {
   try {
     const token = localStorage.getItem("token");
-    console.log("Using token:", token);
+    // console.log("Using token:", token);
 
     const res = await fetch(`${BASE_URL}/level/user/levelname`, {
       method: "PUT",
