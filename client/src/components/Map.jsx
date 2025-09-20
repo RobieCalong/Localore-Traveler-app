@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import "../styles/Map.css";
 import { fetchAllLocations } from "../api/index";
 
 function Map() {
@@ -34,10 +34,13 @@ function Map() {
   }
 
   return (
-    <div>
-      <h2>Venture Forth</h2>
-      {locations && <div className="flex-container">{mapLocations()}</div>}
-    </div>
+    <>
+      <div className="map-gradient"></div>
+      <div>
+        <h2>Venture Forth</h2>
+        {locations && <div className="flex-container">{mapLocations()}</div>}
+      </div>
+    </>
   );
 }
 
