@@ -20,14 +20,13 @@ function Map() {
     return locations.map((city, idx) => {
       return (
         <div key={idx} className="flex-item">
+          <span className="city-name">{city.location}</span>
           <Link to={`/location/${city.location}/quests`}>
             <img
               src={`/assets/maps/${city.location}_map.png`}
-              alt={`city name is ${city.location}`}
-              width="200px"
+              alt={city.location}
             />
           </Link>
-          <p>City: {city.location}</p>
         </div>
       );
     });
@@ -37,7 +36,8 @@ function Map() {
     <>
       <div className="map-gradient"></div>
       <div>
-        <h2>Venture Forth</h2>
+          <h2 className="map-header">Venture Forth</h2>
+          <div className="map-separator" />
         {locations && <div className="flex-container">{mapLocations()}</div>}
       </div>
     </>
