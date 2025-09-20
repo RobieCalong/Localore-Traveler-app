@@ -60,7 +60,7 @@ function SingleQuest() {
 
   return (
     <div>
-      <h1>{quest.title}</h1>
+      <h2 className="component-title">{quest.title}</h2>
       <NpcBob say={say} />
       {nextButton()}
       {acceptQuestButton()}
