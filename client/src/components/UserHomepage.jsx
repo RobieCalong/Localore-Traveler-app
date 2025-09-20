@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserInfo, fetchCompletedQuests, fetchUserBadges } from  "../api/index";
+import "../styles/UserHomepage.css";
 
 export default function UserHomepage () {
     const { userId: paramUserId } = useParams();
@@ -47,14 +48,16 @@ export default function UserHomepage () {
         <div>
             {error && <div style={{ color: "red" }}>Error: {error}</div>}
             <div>
-                <h1>Welcome, {user?.username}</h1>
-                <p>Level: {user?.level_name}</p>
-                <p>Experience: {user?.experience}</p>
+                <h1 className="welcome-user">Welcome, {user?.username}</h1>
+                <p className="level-name">
+                    Level: {user?.level_name}<br/>
+                    Experience: {user?.experience}
+                </p>
             </div>
 
             <div>
-                <h2>Completed Quests:</h2>
-                <ul>
+                <h2 className="completed-quest-title">Completed Quests:</h2>
+                <ul className="completed-quests-list">
                     {completedQuests.map(q => (
                         <li key={q.id}>{q.title}</li>
                     ))}
@@ -62,11 +65,11 @@ export default function UserHomepage () {
             </div>
 
             <div>
-                <h2>Badges:</h2>
-                <ul>
+                <h2 className="user-badges-title">Badges:</h2>
+                <ul className="badges-list">
                     {badges.map(badge => (
                         <li key={badge.id}>
-                            <img src={`/assets/badges/badge_${badge.id}.png`} alt={badge.name} width={40} />
+                            <img src={`/assets/badges/badge_${badge.id}.png`} alt={badge.name} width={100} />
                         </li>
                     ))}
                 </ul>
