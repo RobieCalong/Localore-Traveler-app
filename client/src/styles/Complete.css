@@ -1,0 +1,42 @@
+.complete-txt {
+    font-size: 48px;
+    color: #fff;
+    margin-top: 20px;
+    font-family: "Cinzel Decorative", cursive;
+}
+
+.complete-btn {
+    padding: 0.8rem;
+    background: #ff3b2f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+.complete-btn:hover {
+    background: #f56557;
+}
+
+.complete-npc-txt {
+    font-size: 36px;
+    color: white;
+    margin-top: 20px;
+    font-family: "Cinzel Decorative", cursive;
+}
+
+.complete-badge {
+    background-color: #e49999;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.complete-badge:hover {
+    transform: translateY(-3px);
+}

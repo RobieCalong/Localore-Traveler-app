@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import "../styles/Map.css";
 import { fetchAllLocations } from "../api/index";
 
 function Map() {
@@ -20,24 +20,27 @@ function Map() {
     return locations.map((city, idx) => {
       return (
         <div key={idx} className="flex-item">
+          <span className="city-name">{city.location}</span>
           <Link to={`/location/${city.location}/quests`}>
             <img
               src={`/assets/maps/${city.location}_map.png`}
-              alt={`city name is ${city.location}`}
-              width="200px"
+              alt={city.location}
             />
           </Link>
-          <p>City: {city.location}</p>
         </div>
       );
     });
   }
 
   return (
-    <div>
-      <h2>Venture Forth</h2>
-      {locations && <div className="flex-container">{mapLocations()}</div>}
-    </div>
+    <>
+      <div className="map-gradient"></div>
+      <div>
+          <h2 className="map-header">Venture Forth</h2>
+          <div className="map-separator" />
+        {locations && <div className="flex-container">{mapLocations()}</div>}
+      </div>
+    </>
   );
 }
 

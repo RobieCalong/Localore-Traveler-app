@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchUserQuestIdByQuestId, markUserQuestComplete } from "../api/index";
 import { useState } from "react";
+import "../styles/UploadProof.css";
 
 function UploadProof() {
   const { id } = useParams();
@@ -37,12 +38,12 @@ function UploadProof() {
 
   return (
     <div>
-      <h2>Please upload an image URL</h2>
+      <h2 className="upload-img-title">Please upload an image URL</h2>
       <img src={`/assets/cloud.png`} alt="upload-cloud-image" />
       <div>
         <form onSubmit={uploadImageUrl}>
-          <input type="text" name="img-url" placeholder="Image URL" />
-          <button type="submit" name="button">
+          <input className="upload-form" type="text" name="img-url" placeholder="Image URL" /><br />
+          <button className="proof-btn" type="submit" name="button">
             Submit
           </button>
         </form>

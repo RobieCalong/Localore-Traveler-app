@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-top: 100px;
+}
+
+.welcome-user {
+    font-size: 90px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: "Cinzel Decorative", cursive;
+    border-radius: 10px;
+}
+
+.level-name {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'poppins', sans-serif;
+}
+
+.completed-quest-title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: "Cinzel Decorative", cursive;
+}
+
+.user-badges-title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: "Cinzel Decorative", cursive;
+}
+
+.completed-quests-list,
+.badges-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.completed-quests-list li,
+.badges-list li {
+    background-color: #e49999;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.completed-quests-list li:hover,
+.badges-list li:hover {
+    transform: translateY(-6px);
+    background-color: #f84f46;
+}
+
+.badges-list img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+
+

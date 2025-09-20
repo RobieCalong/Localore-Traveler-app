@@ -18,7 +18,7 @@ async function seedDatabase() {
     await createLevel("Nomad", 3, 5);
     await createLevel("Explorer", 6, 8);
     await createLevel("Adventurer", 9, 11);
-    await createLevel("Legend of the Map", 12, 999999)
+    await createLevel("Legend of the Map🌎", 12, 999999)
   }
   await seedLevels()
 
