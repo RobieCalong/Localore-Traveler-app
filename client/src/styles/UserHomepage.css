@@ -7,10 +7,10 @@ body {
 }
 
 .welcome-user {
-    font-size: 100px;
+    font-size: 90px;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'poppins', sans-serif;
+    font-family: "Cinzel Decorative", cursive;
     border-radius: 10px;
 }
 
@@ -25,14 +25,14 @@ body {
     font-size: 50px;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'poppins', sans-serif;
+    font-family: "Cinzel Decorative", cursive;
 }
 
 .user-badges-title {
     font-size: 50px;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'poppins', sans-serif;
+    font-family: "Cinzel Decorative", cursive;
 }
 
 .completed-quests-list,
@@ -57,7 +57,8 @@ body {
 
 .completed-quests-list li:hover,
 .badges-list li:hover {
-    transform: translateY(-3px);
+    transform: translateY(-6px);
+    background-color: #f84f46;
 }
 
 .badges-list img {
