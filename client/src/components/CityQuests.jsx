@@ -11,9 +11,17 @@ function CityQuests() {
   const [completedQuests, setCompletedQuests] = useState([]);
 
   const { setQuest } = useContext(QuestContext);
-  let navigateUrl = useNavigate();
+  const navigateUrl = useNavigate();
 
   const param = useParams();
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigateUrl("/login");
+    }
+  }, [navigateUrl]);
   // console.log(param.city); //access URL param
 
   //get all Quests in a City
