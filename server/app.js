@@ -30,7 +30,7 @@ app.use("/location", locationRouter);
 app.use("/quests", questsRouter);
 app.use("/usersquests", usersQuests);
 app.use("/level", levelRouter);
-app.use("/", badgeRouter);
+app.use("/badge", badgeRouter);
 
 // Serve static files from client/dist
 const __filename = fileURLToPath(import.meta.url);
