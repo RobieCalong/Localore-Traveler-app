@@ -19,7 +19,7 @@ export default app;
 
 // 🔹 Setup
 app.use(cors({
-  origin: process.env.CORS_ORIGIN ?? "http://localhost:5173", // change to your frontend Render URL
+  origin: process.env.CORS_ORIGIN ?? "https://localore-traveler-app-1.onrender.com/", // change to your frontend Render URL
   credentials: true
 }));
 app.use(morgan("dev"));
