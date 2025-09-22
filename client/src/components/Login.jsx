@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
-const BASE_URL = `https://localore-traveler-app-4rn3.onrender.com` || `http://localhost:3000`;
+const BASE_URL = `https://localore-traveler-app-4rn3.onrender.com`;
 
 function Login() {
   const [username, setUsername] = useState("");

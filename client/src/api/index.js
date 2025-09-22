@@ -1,4 +1,4 @@
-const BASE_URL = `https://localore-traveler-app-4rn3.onrender.com` || `http://localhost:3000`;
+const BASE_URL = `https://localore-traveler-app-4rn3.onrender.com`;
 
 //hard-coded token for user_id = 1        { "username": "seedUser1", "password": "seedPassword1"  }
 //const token1 = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkVXNlcjEiLCJpYXQiOjE3NTczNTkyMDUsImV4cCI6MTc1Nzk2NDAwNX0.BQM2s0fqa27m7qjnkjg85kvucXIrW-nex61RLHtiBsM`;

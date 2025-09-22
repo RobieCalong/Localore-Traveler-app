@@ -15,7 +15,7 @@ function CityQuests() {
 
   const param = useParams();
 
-  const BASE_URL = `https://localore-traveler-app-4rn3.onrender.com` || `http://localhost:3000`;
+  const BASE_URL = `https://localore-traveler-app-4rn3.onrender.com`;
 
   // Redirect to login if not authenticated or token is invalid
   useEffect(() => {
