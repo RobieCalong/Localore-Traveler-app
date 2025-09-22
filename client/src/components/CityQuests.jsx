@@ -15,12 +15,37 @@ function CityQuests() {
 
   const param = useParams();
 
-  // Redirect to login if not authenticated
+  // Redirect to login if not authenticated or token is invalid
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) {
-      navigateUrl("/login");
+    const userId = localStorage.getItem("userId");
+    async function checkAuth() {
+      if (!token || !userId) {
+        navigateUrl("/login");
+        return;
+      }
+      // Try to fetch user info to validate token
+      try {
+        const res = await fetch(`http://localhost:3000/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        if (!res.ok) {
+          // Token is invalid or expired
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+          navigateUrl("/login");
+        }
+      } catch (err) {
+        // Network or other error
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        navigateUrl("/login");
+      }
     }
+    checkAuth();
   }, [navigateUrl]);
   // console.log(param.city); //access URL param
 
