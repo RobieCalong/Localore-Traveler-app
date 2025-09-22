@@ -1,9 +1,13 @@
 import pg from "pg";
+import dotenv from "dotenv";
+dotenv.config();
 
-const options = { connectionString: process.env.DATABASE_URL };
+const options = {
+  connectionString: process.env.DATABASE_URL,
+};
 
-// Need SSL for external database connection
-if (process.env.NODE_ENV === "production") {
+// Always enable SSL if DATABASE_URL is external (not localhost)
+if (process.env.DATABASE_URL.includes("render.com")) {
   options.ssl = { rejectUnauthorized: false };
 }
 
