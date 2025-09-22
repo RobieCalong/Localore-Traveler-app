@@ -15,6 +15,8 @@ function CityQuests() {
 
   const param = useParams();
 
+  const BASE_URL = `https://localore-traveler-app-1.onrender.com` || `http://localhost:3000`;
+
   // Redirect to login if not authenticated or token is invalid
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -26,7 +28,7 @@ function CityQuests() {
       }
       // Try to fetch user info to validate token
       try {
-        const res = await fetch(`http://localhost:3000/users/${userId}`, {
+        const res = await fetch(`${BASE_URL}/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

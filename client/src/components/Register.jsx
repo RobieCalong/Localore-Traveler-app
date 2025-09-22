@@ -8,7 +8,7 @@ function Register() {
   const [error] = useState("");
   const navigate = useNavigate();
 
-  const BASE_URL = `http://localhost:3000`;
+  const BASE_URL = `https://localore-traveler-app-1.onrender.com` || `http://localhost:3000`;
 
   async function handleRegister(e) {
     e.preventDefault();
