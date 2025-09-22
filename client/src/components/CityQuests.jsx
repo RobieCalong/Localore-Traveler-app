@@ -28,7 +28,7 @@ function CityQuests() {
       }
       // Try to fetch user info to validate token
       try {
-        const res = await fetch(`${BASE_URL}/${userId}`, {
+        const res = await fetch(`${BASE_URL}/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
